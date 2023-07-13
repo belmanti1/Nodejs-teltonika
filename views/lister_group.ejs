@@ -1,0 +1,41 @@
+<%- include('includes/_header') %>
+        <ul class="navbar-nav ml-auto"> 
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav></br></br></br>
+  <button  type="submit" class="btn btn-primary" width="20px">
+    <a href="/group/add_group" STYLE="text-shadow: -1px -1px 1px #aaa,
+    0px 4px 1px rgba(0,0,0,0.5),
+    4px 4px 5px rgba(0,0,0,0.7),
+    0px 0px 7px rgba(0,0,0,0.4)">Ajouter un Groupe </a>
+  </button>
+  <br/><br/><br/>
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col" STYLE="text-shadow: -1px -1px 1px #aaa,
+        0px 4px 1px rgba(0,0,0,0.5),
+        4px 4px 5px rgba(0,0,0,0.7),
+        0px 0px 7px rgba(0,0,0,0.4)">ID</th>
+        <th scope="col" STYLE="text-shadow: -1px -1px 1px #aaa,
+        0px 4px 1px rgba(0,0,0,0.5),
+        4px 4px 5px rgba(0,0,0,0.7),
+        0px 0px 7px rgba(0,0,0,0.4)">Nom</th>
+        <th scope="col" STYLE="text-shadow: -1px -1px 1px #aaa,
+        0px 4px 1px rgba(0,0,0,0.5),
+        4px 4px 5px rgba(0,0,0,0.7),
+        0px 0px 7px rgba(0,0,0,0.4)">Action</th>
+      </tr>
+    </thead>
+      <tbody>
+       <%- include('includes/_showGroup.ejs') %>
+      </tbody>
+  </table>
+<%- include('includes/_footer.ejs') %>

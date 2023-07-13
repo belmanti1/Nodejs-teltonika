@@ -1,0 +1,51 @@
+nav {
+    background-color:#563d7c;
+    color:#fff;
+    padding: 30px 60px;
+    display:flex;
+    justify-content :space-between;
+   }
+   nav ul {
+       display:flex;
+       justify-content:space-around;
+       align-items:center;
+   }
+   
+   nav li {
+       list-style:none;
+   }
+   nav li a {
+       color :#fff;
+       text-decoration:none;
+       font-weight:bold;
+       padding:5px 8px;
+   }
+   nav li a:hover {
+       color: yellow;
+       text-decoration:none;
+       
+   }
+   table {
+       border-spacing:0px;
+       width:100%;
+
+   }
+   .table td, .table th {
+    padding: .75em;
+    vertical-align:top;
+    text-align:center;
+    border-top:1px solid var(--border);
+   }
+
+   .table td>a.btn{
+    padding: .3em 1em;
+    font-size:1.1em;
+    margin:0 .2em
+   }
+   
+   .table tr:hover{
+     background-color :#06d6a0;
+   }
+   .table tr:hover td>a{
+     box-shadow:none;
+   }

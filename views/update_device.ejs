@@ -1,0 +1,55 @@
+<%- include('includes/_header') %>
+<ul class="navbar-nav ml-auto"> 
+  <li class="nav-item">
+      <a class="nav-link" href="#"></a>
+  </li>
+  <li class="nav-item">
+    
+      <a class="nav-link" href="/auth/logout">Logout</a>
+  </li>
+  </ul>
+</div>
+</div>
+</nav>
+  <div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body text-center">
+        <h1 class="mb-3">
+          <img src="/assets/secure-icon.png" alt="icon" width="20%" />
+        </h1>
+        <h2>
+          Modifier un appareil
+        </h2>
+        <%- include ("./messages") %>
+        <form  method="POST" id="update_device" >
+          <div class="form-group">
+            <label for="imei">Imei</label>
+            <input type="hidden" name="id" value="<%= device._id %>">
+            <input type="text"  name="imei" class="form-control" placeholder="Ilon Mask"
+              value="<%= device.imei %>" />
+          </div>
+          <div class="form-group">
+            <label for="device_nom">Nom de l'appareil</label>
+            <input type="text"  name="device_nom" class="form-control" placeholder="Enter le nom"
+              value="<%= device.device_nom %>" />
+          </div>
+          <div class="form-group">
+            <label for="createdBy">createdBy</label>
+            <input type="text" name="createdBy" class="form-control" placeholder="Enter createdBy"
+              value="<%= device.createdBy %>" />
+          </div>
+          <div class="form-group">
+            <label for="status">Status</label>
+            <input type="text"  name="status" class="form-control" placeholder="Entrer le Status"
+              value="<%= device.status %>" />
+          </div>
+          <div>
+            <button type="submit" class="btn btn-primary btn-block">
+              Save
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <%- include('includes/_footer') %>

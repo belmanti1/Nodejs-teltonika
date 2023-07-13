@@ -1,0 +1,16 @@
+<% for(var i=0;i<devices.length;i++){%>
+<tr>
+    <th><%= i+1 %></th>
+    <td><%= devices[i].imei %></td>
+    <td><%= devices[i].device_nom %></td>
+    <td><%= devices[i].status %></td>
+    <td>
+      <a href="/device/update-device?id=<%= devices[i]._id %>" class="btn border-shadow update">
+        <span class="text-gardient"><i class="fas fa-pencil-alt"></i></span>
+      </a>
+      <a  class="btn border-shadow delete" data-id=<%= devices[i]._id %> >
+        <span class="text-gardient"><i class="fas fa-times"></i></span>
+      </a>
+    </td>  
+</tr>
+<% } %>

@@ -1,0 +1,46 @@
+<%- include('includes/_header') %>
+<ul class="navbar-nav ml-auto"> 
+  <li class="nav-item">
+      <a class="nav-link" href="#"></a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="/auth/logout">Logout</a>
+  </li>
+</ul>
+</div>
+</div>
+</nav>
+  <div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body text-center">
+        <h1 class="mb-3">
+          <img src="/assets/secure-icon.png" alt="icon" width="20%" />
+        </h1>
+        <h2>
+          Ajouter un Canal
+        </h2>
+        <%- include ("./messages") %>
+        <form action="/canal/api/canaux" method="POST" id="add_canal">
+          <div class="form-group">
+            <label for="canal_nom">Nom du canal</label>
+            <input type="canal_nom" id="canal_nom" name="canal_nom" class="form-control" placeholder="enter le nom du canal"
+              value="" />
+          </div>
+          <div class="form-group">
+            <label for="canal_ip">Adresse IP du canal</label>
+            <input type="canal_ip" id="canal_ip" name="canal_ip" class="form-control" placeholder="Enter l'adresse du l'appareil"
+              value="" />
+          </div>
+          <div class="form-group">
+            <label for="canal_port">Port du Canal</label>
+            <input type="canal_port" id="canal_port" name="canal_port" class="form-control" placeholder="Enter le port"
+              value="" />
+          </div>
+          <button type="submit" class="btn btn-primary btn-block">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <%- include('includes/_footer') %>
