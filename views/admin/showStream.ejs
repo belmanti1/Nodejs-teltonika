@@ -1,0 +1,21 @@
+<% for(var i=0;i<streams.length;i++){%>
+    <tr>
+        <th><%= i+1 %></th>
+        <td><%= streams[i].Timestamp %></td>
+        <td><%= streams[i].Priority %></td>
+        <td><%= streams[i].Longitude %></td>
+        <td><%= streams[i].Latitude %></td>
+        <td><%= streams[i].Altitude %></td>
+        <td><%= streams[i].Angle %></td>
+        <td><%= streams[i].Satellites %></td>
+        <td><%= streams[i].Speed %></td>
+        <td>
+          <a href="/user/admin/update_user?id=<%= streams[i]._id %>" class="btn border-shadow update">
+            <span class="text-gardient"><i class="fas fa-pencil-alt"></i></span>
+          </a>
+          <a  class="btn border-shadow delete" data-nd=<%= streams[i]._id %> >
+            <span class="text-gardient"><i class="fas fa-times"></i></span>
+          </a>
+        </td>  
+    </tr>
+    <% } %>

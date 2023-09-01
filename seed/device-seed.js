@@ -33,6 +33,7 @@ newDevice1.save((err)=>{
         console.log(err);
     }
 })
+
 newDevice2.save((err)=>{
     if(!err){
         console.log('record1 was added');

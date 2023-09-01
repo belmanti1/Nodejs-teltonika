@@ -1,7 +1,6 @@
 //--------------- Device ------------------//
-
 $("#add_device").submit(function(event){
-    alert("Data Inserted Successfully");
+    
 })
 $("#update_device").submit(function(event){
     event.preventDefault();
@@ -41,7 +40,7 @@ if(window.location.pathname =="/device/lister-device"){
 
 //-------- Canal ----------//
 $("#add_canal").submit(function(event){
-    alert("Data Inserted Successfully");
+   
 })
 $("#update_canal").submit(function(event){
     event.preventDefault();
@@ -80,7 +79,7 @@ if(window.location.pathname =="/canal/lister_canal"){
 }
 //---------- Group -----------//
 $("#add_group").submit(function(event){
-    alert("Data Inserted Successfully");
+   
 })
 $("#update_group").submit(function(event){
     event.preventDefault();
@@ -153,4 +152,19 @@ if(window.location.pathname =="/user/lister_user"){
         }
     })
 }
-//------Streams--------//
+//------Stream-------//
+if(window.location.pathname =="/stream/lister-stream"){
+    $ondelete = $(".table tbody td a.delete");
+    $ondelete.click(function(){
+        var id =$(this).attr("data-d")
+        if(confirm("Do you really want to delete this record?")){
+            jQuery.ajax({
+                url:`http://localhost:3006/stream/api/streams/${id}`,
+                "method":"DELETE"
+            }).done(function(response){
+                alert("Data Updataed Successfully!");
+                location.reload()
+            })
+        }
+    })
+}

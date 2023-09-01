@@ -7,10 +7,12 @@ router.get('/', (req, res) => {
     res.render('welcome');
 });
 
+
 //------------ Dashboard Route ------------//
 router.get('/dashboard', ensureAuthenticated, (req, res) => res.render('dash', {
     name: req.user.name
 }));
+
 
 //--------------- Dashboard Admin ------------------//
 router.get('/dashadmin', (req, res) => res.render('dashadmin', {

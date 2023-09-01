@@ -1,0 +1,25 @@
+<% for(var i=0;i<streams.length;i++){%>
+  
+    <tr>
+        <th><%= i+1 %></th>
+        <td><%= streams[i].imei_device%></td>
+        <td><%= streams[i].port%></td>
+        <td><%= streams[i].nom_group %></td>
+        <td><%= streams[i].stream_nom %></td>
+        <td><%= streams[i].timestamp %></td>
+        <td><%= streams[i].priority %></td>
+        <td><%= streams[i].gps.longitude %></td>
+        <td><%= streams[i].gps.latitude %></td>
+        <td><%= streams[i].gps.altitude %></td>
+        <td><%= streams[i].gps.angle %></td>
+        <td><%= streams[i].gps.speed %></td>
+        <td><%= streams[i].event_id %></td>
+        <td><%= streams[i].properties_count %></td>
+        <td>
+          <a  class="btn border-shadow delete" data-d=<%= streams[i]._id %> >
+            <span class="text-gardient"><i class="fas fa-times"></i></span>
+          </a>
+        </td>  
+    </tr>
+   
+  <% } %>

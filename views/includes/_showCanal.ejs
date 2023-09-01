@@ -1,8 +1,8 @@
 <% for(var i=0;i<canaux.length;i++){%>
+  <% if ( canaux[i].iden_pers.name === name ) { %>
     <tr>
         <th><%= i+1 %></th>
         <td><%= canaux[i].canal_nom %></td>
-        <td><%= canaux[i].canal_ip %></td>
         <td><%= canaux[i].canal_port %></td>
         <td>
           <a href="/canal/update_canal?id=<%= canaux[i]._id %>" class="btn border-shadow update">
@@ -11,6 +11,13 @@
           <a  class="btn border-shadow delete" data-n=<%= canaux[i]._id %>>
             <span class="text-gardient"><i class="fas fa-times"></i></span>
           </a>
+          <a href="/canal/start_tcp_server?id=<%= canaux[i]._id %>">  
+            <button>On</button>  
+          </a>
+          <a href="/canal/stop_tcp_server?id=<%= canaux[i]._id %>">  
+            <button>Off</button>  
+          </a>
         </td>  
     </tr>
-    <% } %>
+  <% } %>
+<% } %>

@@ -1,24 +1,34 @@
 const axios = require('axios');
-exports.homeStream=(req,res)=>{
-     //make a get request to /api/groupes
-     axios.get('http://localhost:3006/stream/api/streams')
-     .then(function(response){
-         console.log(response)
-         res.render('lister_stream',{streams:response.data})
-     })
-     .catch(err=>{
-           res.send(err);
-     })
+
+exports.log=(req,res)=>{
+    axios.get('http://localhost:3006/stream/api/streams')
+          .then(function(response){
+               console.log(response)
+               res.render("log",{streams:response.data,name: req.user.name})
+          })
+          .catch(err=>{
+             res.send(err);
+          })
 }
 exports.add_stream=(req,res)=>{
-    res.render('add_stream',{streams:"new Data"});
+   axios.get('http://localhost:3006/device/api/devices',{ params : {id:req.query.id }})
+       .then(async function(devicedata){
+          
+           res.render("add_stream",{device:devicedata.data,name: req.user.name})
+       })
+       .catch(err =>{
+           res.send(err);
+       })
+   //make a get request to /api/groupes
+} 
+exports.Adminlog=(req,res)=>{
+   axios.get('http://localhost:3006/stream/api/streams')
+         .then(function(response){
+              console.log(response)
+              res.render("admin/log",{streams:response.data,name: "administrateur"})
+         })
+         .catch(err=>{
+            res.send(err);
+         })
 }
-exports.update_stream=(req,res)=>{
-    axios.get('http://localhost:3006/stream/api/streams',{ params : {id:req.query.id }})
-    .then(function(streamdata){
-        res.render("update_stream",{stream:streamdata.data})
-    })
-    .catch(err =>{
-        res.send(err);
-    })
-}
+

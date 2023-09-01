@@ -3,81 +3,45 @@ const mongoose= require('mongoose');
   
 //---------- Stream Schema ------------//
 const StreamSchema = new mongoose.Schema({
-        iden_perso: {
+        // iden_perso: {
+        //     type:mongoose.Schema.Types.ObjectId,
+        //     ref:'User'
+        // },
+        // timestamp: {
+        //     type:Date,
+        //     required:true
+        // },
+        identifiant_personne:{
             type:mongoose.Schema.Types.ObjectId,
             ref:'User'
         },
-        id_appareil:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Device'
-        },
-        id_group:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Group'
-        },
-        ident_channel:{
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'Canal'
-        },
-        flux_nom:{
+        imei_device:{
             type: String,
-            required:true
-        },
-       
-        battery_current:{
+            required:true,
+          },
+        port:{
             type: Number,
-            required:true
+            required:true,
+
         },
-        engine_ignition_status:{
-            type: Boolean,
-            required:true
+        nom_group:{
+            type: String,
+            required:true,
         },
-        event_priority_enum:{
-            type:Number,
-            required:true
+        stream_nom: String,
+        timestamp:String,
+        priority: Number,
+        gps: {
+          longitude: Number,
+          latitude: Number,
+          altitude: Number,
+          angle: Number,
+          speed: Number,
         },
-        external_powersource_voltage:{
-            type: Number,
-            required:true
-        },
-        movement_status:{
-            type:Boolean,
-            required:true
-        } 
-        ,
-        ip_port:{
-            type:String,
-            required:true
-        } 
-        ,
-        position_altitude:{
-            type:Number,
-            required:true
-        },
-        position_direction:{
-            type: Number,
-            required:true
-        },
-        position_hdop:{
-            type:Number,
-            required:true
-        },
-        position_pdop:{
-            type:Number,
-            required:true
-        },
-        position_satelites:{
-            type:Number,
-            required:true
-        },
-        position_speed:{
-            type:Number,
-            required:true
-        },
-        position_valid:{
-            type:Boolean,
-            required:true
-        },
+        event_id: Number,
+        properties_count: Number,
+        ioElement: [],
+        
     },{timestamps:true});
 
 

@@ -1,0 +1,69 @@
+<%- include('../includes/_headerAdmin') %>
+<ul class="navbar-nav ml-auto"> 
+  <li class="nav-item">
+    <a STYLE="text-shadow: -1px -1px 1px #aaa,
+    0px 4px 1px rgba(0,0,0,0.5),
+    4px 4px 5px rgba(0,0,0,0.7),
+    0px 0px 7px rgba(0,0,0,0.4)" class="nav-link" href="#">Welcome <%= name %></a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="/auth/logout">Logout</a>
+  </li>
+</ul>
+</div>
+</div>
+</nav>
+  <div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body text-center">
+        <h1 class="mb-3">
+          <img src="/assets/secure-icon.png" alt="icon" width="20%" />
+        </h1>
+        <h2 >
+          Ajouter un appareil
+        </h2>
+        <%- include ("../messages") %>
+        <form action="/device/api/devices" method="POST" id="add_device">
+          <div class="form-group">
+            <label for="imei">Imei</label>
+            <input type="imei" id="imei" name="imei" class="form-control" placeholder="Enter Imei"
+              value="" />
+          </div>
+          <div class="form-group">
+            <label for="device_nom">Nom de l'appareil</label>
+            <input  type="device_nom" id="device_nom" name="device_nom" class="form-control" placeholder="Enter nom de l'appareil"
+              value="" />
+          </div>
+          <div class="form-group">
+            <label for="group">groupe</label>
+            <select class="form-control" id="group-dropdown" name="group_nom">
+            <option value="">Select group</option>
+            <% if(groups.length){
+              for(var i = 0; i< groups.length; i++) {%> 
+                  <option  value="<%= groups[i]._id%>">
+                        <%= groups[i].group_nom%>
+                  </option>
+            <% } }%>
+            </select>
+            </div>
+            <div class="form-group">
+              <label for="canal">Canal</label>
+              <select class="form-control" id="canal-dropdown" name="canal_nom">
+              <option value="">Select canal</option>
+              <% if(canals.length){
+                for(var i = 0; i< canals.length; i++) {%> 
+                    <option  value="<%= canals[i]._id%>">
+                          <%= canals[i].canal_nom %>
+                    </option>
+              <% } }%>
+              </select>
+              </div>
+          <button type="submit" id="submitButton" class="btn btn-primary btn-block">
+                Save
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+ 
+  <%- include('../includes/_footer') %>

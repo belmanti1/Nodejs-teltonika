@@ -1,85 +1,11 @@
 var Canal= require('../models/canalModel.js');
 const User = require('../models/User.js');
+const tcpServer=require('../models/TcpServer.js');
 const net = require('net');
-const Device = require('../models/deviceModel.js')
-//const net =require('net')
+const Device = require('../models/deviceModel.js');
+const Parser=require('../node_modules/teltonika-parser-fix')
+const Codec8e=require('../node_modules/teltonika-parser-fix/codecs/codec8e.js')
 
-// exports.connect=(req,res)=>{
-//   const server = net.createServer((socket) => {
-//     let isFirstMessage = true;
-//     const imeiList = [];
-  
-//     // Method for performing handshake
-//     function perform_handshake(imei) {
-//       // Determine if server accepts data from this module
-//       const acceptData = true; /* Your logic to determine if data should be accepted for this IMEI */;
-      
-//       // Respond to module with binary packet indicating if data was accepted
-//       const response = acceptData ? Buffer.from([0x01]) : Buffer.from([0x00]);
-//       socket.write(response);
-      
-//       if (acceptData) {
-//         console.log('Handshake successful');
-//       } else {
-//         console.log('Handshake failed');
-//       }
-//     }
-  
-//     // Method for establishing a connection
-//     function establish_connection() {
-//       // Send a connection message to the module
-//       const message = Buffer.from('Connection message');
-//       socket.write(message);
-  
-//       console.log('Connection successful');
-//     }
-  
-//     // Method for closing a connection
-//     function close_connection() {
-//       socket.end();
-  
-//       console.log('Connection ended');
-//     }
-  
-//     socket.on('data', (data) => {
-//       if (isFirstMessage) {
-//         const imeiLength = data.readUInt16BE(0);
-//         const imei = data.slice(2, 2 + imeiLength).toString('hex');
-//         console.log(`IMEI: ${imei}`);
-//         imeiList.push(imei);
-  
-//         perform_handshake(imei);
-//         establish_connection();
-  
-//         isFirstMessage = false;
-//       } else {
-//         const dataStr = data.toString('hex');
-//         console.log(`Received data: ${dataStr}`);
-  
-//         // Parse the received data and determine the sent data number
-//         const sentDataNumber = /* Your logic to determine the sent data number */;
-        
-//         // Generate a response indicating the received data number
-//         const response = Buffer.alloc(4);
-//         response.writeUInt32BE(sentDataNumber, 0);
-  
-//         // Send the response to the module
-//         socket.write(response);
-//       }
-//     });
-  
-//     socket.on('end', () => {
-//       close_connection();
-//     });
-  
-//     socket.on('error', (err) => {
-//       console.error('Socket error:', err);
-//     });
-//   });
-  
-//   const port = 9000;
-//   server.listen(port);
-// }
 // create and save new Canal 
 exports.create=(req,res)=>{
    // validate request
@@ -101,9 +27,8 @@ exports.create=(req,res)=>{
    const canal =new Canal({
        iden_pers:currentUserId,
        canal_nom : req.body.canal_nom,
-       canal_ip : req.body.canal_ip,
        canal_port :req.body.canal_port,
-      
+       tcpServerRunning:false
       })
    canal
         .save(canal)
@@ -114,10 +39,8 @@ exports.create=(req,res)=>{
           res.status(500).send({
             message:err.message || "Some error occured while creating a create operation"
           });
-        });
+    });
 }
-
-
 // retrieve and return all canaux/retrieve and return a single canal
 exports.find=(req,res)=>{
      if(req.query.id){
@@ -147,7 +70,6 @@ exports.find=(req,res)=>{
      }
      
 }
-
 //update a new identified canal by canal id 
 exports.update=(req,res)=>{
       if(!req.body){
@@ -189,4 +111,125 @@ exports.delete=(req,res)=>{
         })
     });
 }
+///------ on-server ----------//
+// Start TCP server
+exports.startTCPServer = async (req, res) => {
+  try {
+    const channelId = req.query.id;
+    const channel = await Canal.findById(channelId);
 
+    if (!channel) {
+      return res.status(404).send('Channel not found');
+    }
+
+    if (channel.tcpServerRunning) {
+      return res.send('TCP server is already running');
+    }
+
+    // Create TCP server
+    const tcpServer = net.createServer(c => {
+      console.log('Client connected');
+      c.on('end', () => {
+        console.log('Client disconnected');
+      });
+
+      c.on('data', data => {
+        let buffer = data;
+        let parser = new Parser(buffer);
+
+        if (parser.isImei) {
+          c.write(Buffer.alloc(1, 1));
+        } else {
+          let avl = parser.getAvl();
+
+          let writer = new binutils.BinaryWriter();
+          writer.WriteInt32(avl.number_of_data);
+
+          let response = writer.ByteBuffer;
+          c.write(response);
+        }
+      });
+    });
+
+    // Start the TCP server
+    tcpServer.listen(Canal.canal_port, async () => {
+      // Create a TCPServer instance to store relevant server information
+      const records = Parser._codec.avlObj.records;
+      console.log("records saved:", records);
+      for (const record of records) {
+        const serverInstance = new tcpServer({
+          channel: channel._id,
+          serverInstance: tcpServer,
+          identifiant_personne:currentUserId,
+          imei_device:req.body.imei,
+          port:canal_port,
+          nom_group:group_nom,
+          stream_nom:req.body.stream_nom,
+          timestamp: record.timestamp,
+          priority: record.priority,
+          gps: {
+            longitude: record.gps.longitude,
+            latitude: record.gps.latitude,
+            altitude: record.gps.altitude,
+            angle: record.gps.angle,
+            speed: record.gps.speed,
+          },
+          event_id: record.event_id,
+          properties_count: record.properties_count,
+          ioElement: record.ioElement,
+        });
+     
+        try {
+          const savedInstance = await serverInstance.save();
+          console.log("Stream saved:", savedInstance);
+          Canal.tcpServer = serverInstance._id; // Store TCPServer's ObjectId
+          Canal.tcpServerRunning = true;
+          Canal.save(); 
+          res.send('TCP server started successfully');
+        } catch (err) {
+          console.error("Error while saving stream:", err);
+        }
+      }
+      
+
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('An error occurred');
+  }
+};
+
+// Stop TCP server
+exports.stopTCPServer = async (req, res) => {
+  try {
+    const channelId = req.query.id;
+    const channel = await Canal.findById(channelId);
+
+    if (!channel) {
+      return res.status(404).send('Channel not found');
+    }
+
+    if (!channel.tcpServerRunning) {
+      return res.send('TCP server is not running');
+    }
+
+    // Find the TCPServer instance associated with the channel
+    const serverInstance = await tcpServer.findOne({ channel: channel._id });
+
+    if (!serverInstance) {
+      return res.status(500).send('TCPServer instance not found');
+    }
+
+    // Close the TCP server
+    serverInstance.serverInstance.close(() => {
+      serverInstance.remove(); // Remove the TCPServer instance
+      channel.tcpServer = null;
+      channel.tcpServerRunning = false;
+      channel.save(); // Save changes to the database
+      res.send('TCP server stopped successfully');
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('An error occurred');
+  }
+};

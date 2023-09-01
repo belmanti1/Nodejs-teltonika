@@ -11,7 +11,6 @@ router.get('/login', (req, res) => res.render('login'));
 router.get('/loginAdmin', (req, res) => res.render('loginadmin'));
 //------------ Forgot Password Route ------------//
 router.get('/forgot', (req, res) => res.render('forgot'));
-
 //------------ Reset Password Route ------------//
 router.get('/reset/:id', (req, res) => {
     // console.log(id)
@@ -19,30 +18,22 @@ router.get('/reset/:id', (req, res) => {
 });
 //------------ Register Route ------------//
 router.get('/register', (req, res) => res.render('register'));
-
 //------------ Register POST Handle ------------//
 router.post('/register', authController.registerHandle);
-
 //------------ Email ACTIVATE Handle ------------//
 router.get('/activate/:token', authController.activateHandle);
-
 //------------ Forgot Password Handle ------------//
 router.post('/forgot', authController.forgotPassword);
-
 //------------ Reset Password Handle ------------//
 router.post('/reset/:id', authController.resetPassword);
-
 //------------ Reset Password Handle ------------//
 router.get('/forgot/:token', authController.gotoReset);
-
 //------------ Login POST Handle ------------//
 router.post('/login', authController.loginHandle);
 //------------ Login POST Handle ------------//
 router.post('/loginadmin', authController.loginAdmin);
-
 //------------ Logout GET Handle ------------//
 router.get('/logout', authController.logoutHandle);
-
 /**
  * @description Root Route
  * @method GET

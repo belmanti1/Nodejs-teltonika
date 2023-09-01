@@ -1,0 +1,15 @@
+<% for(var i=0;i<canaux.length;i++){%>
+    <tr>
+        <th><%= i+1 %></th>
+        <td><%= canaux[i].canal_nom %></td>
+        <td><%= canaux[i].canal_port %></td>
+        <td>
+          <a href="/canal/admin/update_canal?id=<%= canaux[i]._id %>" class="btn border-shadow update">
+            <span class="text-gardient"><i class="fas fa-pencil-alt"></i></span>
+          </a>
+          <a  class="btn border-shadow delete" data-n=<%= canaux[i]._id %>>
+            <span class="text-gardient"><i class="fas fa-times"></i></span>
+          </a>
+        </td>  
+    </tr>
+    <% } %>

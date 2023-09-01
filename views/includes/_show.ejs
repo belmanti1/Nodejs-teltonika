@@ -1,9 +1,12 @@
-<% for(var i=0;i<devices.length;i++){%>
+<% for(var i=0;i<devices.length;i++){%> 
+  <% if ( devices[i].ident_personne.name === name ) { %>
 <tr>
     <th><%= i+1 %></th>
+    <td><%= devices[i].ident_personne.name %></td> 
     <td><%= devices[i].imei %></td>
     <td><%= devices[i].device_nom %></td>
-    <td><%= devices[i].status %></td>
+    <td><%= devices[i].ident_group.group_nom  %></td>
+    <td><%= devices[i].ident_canal.canal_port %></td>
     <td>
       <a href="/device/update-device?id=<%= devices[i]._id %>" class="btn border-shadow update">
         <span class="text-gardient"><i class="fas fa-pencil-alt"></i></span>
@@ -11,6 +14,10 @@
       <a  class="btn border-shadow delete" data-id=<%= devices[i]._id %> >
         <span class="text-gardient"><i class="fas fa-times"></i></span>
       </a>
+      <a  href="/stream/add_stream?id=<%= devices[i]._id %>">  
+        <button>Log</button>  
+      </a>
     </td>  
 </tr>
+  <% } %>
 <% } %>

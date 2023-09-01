@@ -11,16 +11,22 @@ const CanalSchema = new mongoose.Schema({
   // },
   canal_nom: {
     type: String,
-    required: true
-  },
-  canal_ip: {
-    type: String,
-    required: true
+    required: true,
+    
   },
   canal_port: {
-    type: String,
-    required: true
+    type: Number,
+    required: true,
+   
   },
+  tcpServer:{
+    type:mongoose.Schema.Types.ObjectId,
+    ref:'TCPServer'
+  },
+  tcpServerRunning:{
+    type:Boolean,
+    default:false
+  }
   
 }, { timestamps: true });
 

@@ -10,44 +10,21 @@
       </div>
     </div>
   </nav></br></br></br>
-  <button  type="submit" class="btn btn-primary" width="20px">
-    <a href="/device/add-device" STYLE="text-shadow: -1px -1px 1px #aaa,
-    0px 4px 1px rgba(0,0,0,0.5),
-    4px 4px 5px rgba(0,0,0,0.7),
-    0px 0px 7px rgba(0,0,0,0.4)" >Ajouter un utilsateur</a>
-  </button>
   <br/><br/>
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col" STYLE="text-shadow: -1px -1px 1px #aaa,
-        0px 4px 1px rgba(0,0,0,0.5),
-        4px 4px 5px rgba(0,0,0,0.7),
-        0px 0px 7px rgba(0,0,0,0.4)">ID</th>
-        <th scope="col" STYLE="text-shadow: -1px -1px 1px #aaa,
-        0px 4px 1px rgba(0,0,0,0.5),
-        4px 4px 5px rgba(0,0,0,0.7),
-        0px 0px 7px rgba(0,0,0,0.4)">Nom</th>
-        <th scope="col" STYLE="text-shadow: -1px -1px 1px #aaa,
-        0px 4px 1px rgba(0,0,0,0.5),
-        4px 4px 5px rgba(0,0,0,0.7),
-        0px 0px 7px rgba(0,0,0,0.4)">Email </th>
-        <th scope="col" STYLE="text-shadow: -1px -1px 1px #aaa,
-        0px 4px 1px rgba(0,0,0,0.5),
-        4px 4px 5px rgba(0,0,0,0.7),
-        0px 0px 7px rgba(0,0,0,0.4)">Password</th>
-        <th scope="col" STYLE="text-shadow: -1px -1px 1px #aaa,
-        0px 4px 1px rgba(0,0,0,0.5),
-        4px 4px 5px rgba(0,0,0,0.7),
-        0px 0px 7px rgba(0,0,0,0.4)">updatedAt</th>
-        <th scope="col" STYLE="text-shadow: -1px -1px 1px #aaa,
-        0px 4px 1px rgba(0,0,0,0.5),
-        4px 4px 5px rgba(0,0,0,0.7),
-        0px 0px 7px rgba(0,0,0,0.4)">Action</th>
-      </tr>
-    </thead>
-      <tbody>
-       <%- include('includes/_showUser.ejs') %>
-      </tbody>
-  </table>
+
+    <table class="table table-dark table-striped">
+      <thead class="thead-light">
+        <tr class="bg-success">
+          <th scope="col" >ID</th>
+          <th scope="col" >Nom</th>
+          <th scope="col" >Email </th>
+          <th scope="col">Password</th>
+          <th scope="col">updatedAt</th>
+          <th scope="col" >Action</th>
+        </tr>
+      </thead>
+        <tbody>
+        <%- include('includes/_showUser.ejs') %>
+        </tbody>
+    </table>
 <%- include('includes/_footer.ejs') %>

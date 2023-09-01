@@ -1,28 +1,36 @@
 var Group= require('../models/groupModel.js');
 const User = require('../models/User.js');
+const Canal = require('../models/canalModel.js')
 
 // create and save new Group
-exports.create=(req,res)=>{
+exports.create=async (req,res)=>{
    // validate request
    if(!req.body){
       res.status(400).send({message:"Content can not be empty!"});
       return;
    }
    // Get the current user ID from the request or session (depending on your setup)
-   const currentUserId= req.body.id; //assuming the user ID is available in req.user.id
+   const currentUserId= req.user.id; //assuming the user ID is available in req.user.id
    // Find  the user by ID and retrieve their name 
-  
    User.findById(currentUserId)
-   .then(user =>{
+   .then(async user =>{
         if(!user){
           res.status(404).send({message :"Utilisateur not exist"});
           return ; 
         }
    });
+  
+   const group_nom = req.body.group_nom;
+  
+   const existingGroup = await Group.findOne({ group_nom });
+    if (existingGroup) {
+      // If the device with the same IMEI already exists, redirect to /device/add-device
+      return res.redirect('/group/add_group');
+    }
    // new group
    const group =new Group({
        id_person:currentUserId,
-       group_nom : req.body.group_nom
+       group_nom : group_nom,
       })
    group
         .save(group)
@@ -43,6 +51,7 @@ exports.find=(req,res)=>{
           const id=req.query.id;
           Group.findById(id)
              .populate('id_person','name')
+             .populate('id_canal','canal_nom')
              .then(data=>{
                  if(!data){
                   res.status(404).send({message:"Not found group with id" +id})
@@ -56,6 +65,7 @@ exports.find=(req,res)=>{
      }else{
        Group.find()
         .populate('id_person','name')
+        .populate('id_canal','canal_nom')
         .then(user=>{
           res.send(user)
         })

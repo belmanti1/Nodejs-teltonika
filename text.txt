@@ -1,0 +1,80 @@
+4 zeros(4 bytes)
+Data field length (4bytes)
+Codec ID(1 bytes)
+Number of Data(1 byte )
+Timestamp(8 bytes)
+Priority(1 byte)
+Longitude(4 bytes)
+Latitude(4 bytes)
+Altitude(2 bytes)
+Angle(2 bytes)
+Satellites(1 byte)
+Speed(2 bytes)
+IO element ID of Event generated (half byte)
+IO elements in record (total)
+IO elements, which length is 1 Byte
+element ID = 01
+element’s value = 0
+element ID = 02
+element’s value = 0
+element ID = 03
+element’s value = 0
+element ID = 04
+element’s value = 0
+element ID = 22 (dec)
+element’s value = 1
+element ID = 71 (dec)
+element’s value = 3
+element ID = 240 (dec)
+element’s value = 0
+element ID = 21 (dec)
+element’s value = 0
+element ID = 200 (dec)
+element’s value = 0
+IO elements, which value length is 2 Bytes
+IO element ID = 9 (dec)
+IO element’s value
+IO element ID = 10 (dec)
+IO element’s value
+element ID = 11 (dec)
+element’s value
+element ID = 19 (dec)
+IO element’s value
+element ID = 67 (dec)
+IO element’s value
+IO element ID = 68 (dec)
+IO element’s value
+IO element ID = 181 (dec)
+IO element’s value
+IO element ID = 182 (dec)
+IO element’s value
+IO element ID = 66 (dec)
+IO element’s value
+IO element ID = 24 (dec)
+IO element’s value
+IO element ID = 205 (dec)
+IO element’s value
+IO element ID = 206 (dec)
+IO element’s value
+IO elements, which value length is 4 Bytes
+IO element ID = 199 (dec)
+IO element’s value
+IO element ID = 241 (dec)
+IO element’s value
+IO element ID = 70 (dec)
+IO element’s value
+IO element ID = 72 (dec)
+IO element’s value
+IO element ID = 73 (dec)
+IO element’s value
+element ID = 74 (dec)
+IO element’s value
+IO element ID = 76 (dec)
+IO element’s value
+IO elements, which value length is 8 Bytes
+IO element ID = 78 (dec)
+IO element’s value
+IO element ID = 207 (dec)
+IO element’s value
+
+

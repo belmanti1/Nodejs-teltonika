@@ -5,9 +5,10 @@ const GroupSchema = new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref:'User'
         },
-        group_nom:{
+        group_nom :{
             type: String,
-            required:true
+            required:true,
+            unique : true
         }
        
     },{timestamps:true});

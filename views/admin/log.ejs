@@ -1,0 +1,37 @@
+<%- include('../includes/_headerAdmin') %>
+        <ul class="navbar-nav ml-auto"> 
+          <li class="nav-item">
+            <a STYLE="text-shadow: -1px -1px 1px #aaa,
+            0px 4px 1px rgba(0,0,0,0.5),
+            4px 4px 5px rgba(0,0,0,0.7),
+            0px 0px 7px rgba(0,0,0,0.4)" class="nav-link" href="#">Welcome <%= name %></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/auth/logout">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+    </br></br></br>
+    </br></br></br>
+  <br/><br/>
+  <table class="table table-bordered">
+    <thead class="thead-light">
+      <tr class="bg-success">
+        <th scope="col" >ID</th>
+        <th scope="col" >Timestamp</th>
+        <th scope="col" >Priority </th>
+        <th scope="col">Longitude</th>
+        <th scope="col">Latitude</th>
+        <th scope="col" >Altitude</th>
+        <th scope="col">Angle</th>
+        <th scope="col">Satellites</th>
+        <th scope="col" >Speed</th>
+      </tr>
+    </thead>
+      <tbody>
+       <%- include('./showStream.ejs') %>
+      </tbody>
+  </table>
+<%- include('../includes/_footer.ejs') %>

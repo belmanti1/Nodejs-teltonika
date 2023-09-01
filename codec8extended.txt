@@ -1,0 +1,44 @@
+4 zeros	: 4 Bytes
+Data field length : 4 Bytes
+Codec ID : 1 Byte
+Number of Data 1 : 1 Byte
+Timestamp : 8 Bytes	
+Priority  :  1 Byte
+Longitude : 4 Bytes
+Latitude : 4 Bytes 
+Altitude : 2 Bytes
+Angle    : 2 Byte
+Satellites : 1 Bytes
+Speed : 2 Bytes
+Event IO ID	: 2 bytes
+N of Total IO :	2 bytes
+N1 of One Byte IO :	2 bytes
+1'st IO ID :	2 bytes
+1'st IO Value :	1 bytes
+N1'th IO ID : 2 bytes
+N1'st IO Value :1 bytes
+N2 of Two Byte IO :	2 bytes
+1'st IO ID : 2 bytes
+1'st IO Value : 2 bytes
+N2'th IO ID : 2 bytes
+N2'st IO Value : 2 bytes
+N4 of Four Byte IO : 2 bytes
+1'st IO ID	: 2 bytes
+1'st IO Value : 4 bytes
+N4'th IO ID	: 2 bytes
+N4'st IO Value	: 4 bytes
+N2 of Eight Byte IO : 2 bytes
+1'st IO ID :2 bytes
+1'st IO Value : 8 bytes
+N8'th IO ID	: 2 bytes
+N8'st IO Value : 8 bytes
+NX of X Byte IO	: 2 bytes
+1'st IO ID : 2 bytes
+1'st IO Length : 2 bytes
+1'st IO Value : defined by length
+NX'st IO ID :2 bytes
+NX'st IO Length:2 bytes
+NX'st IO Value  : defined by length
+Number of Data  : 1 Byte
+CRC-16 : 4 Bytes
+

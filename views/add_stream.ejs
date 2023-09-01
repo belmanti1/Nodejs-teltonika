@@ -1,0 +1,59 @@
+<%- include('includes/_header') %>
+<ul class="navbar-nav ml-auto"> 
+  <li class="nav-item">
+    <a STYLE="text-shadow: -1px -1px 1px #aaa,
+    0px 4px 1px rgba(0,0,0,0.5),
+    4px 4px 5px rgba(0,0,0,0.7),
+    0px 0px 7px rgba(0,0,0,0.4)" class="nav-link" href="#">Welcome <%= name %></a>
+  </li>
+  <li class="nav-item">
+      <a class="nav-link" href="/auth/logout">Logout</a>
+  </li>
+</ul>
+</div>
+</div>
+</nav>
+  <div class="row mt-5">
+    <div class="col-md-6 m-auto">
+      <div class="card card-body text-center">
+        <h1 class="mb-3">
+          <img src="/assets/secure-icon.png" alt="icon" width="20%" />
+        </h1>
+        <h2 >
+          Ajouter un flux 
+        </h2>
+        <%- include ("./messages") %>
+        <form action="/stream/api/streams" method="POST" id="add_device">
+            <div class="form-group">
+              <label for="imei">Imei</label>
+              <input type="imei" id="imei" name="imei" class="form-control"
+                value="<%= device.imei %>"/>
+            </div>
+            <div class="form-group">
+              <label for="canal_port">Port</label>
+              <input type="canal_port" id="canal_port" name="canal_port" class="form-control"
+                value="<%= device.ident_canal.canal_port %>"/>
+            </div>
+            <div class="form-group">
+              <label for="group_nom">Nom du groupe</label>
+              <input type="group_nom" id="group_nom" name="group_nom" class="form-control" 
+                value="<%= device.ident_group.group_nom %>"/>
+            </div>
+            <div class="form-group">
+              <label for="stream_nom">nom de flux</label>
+              <input type="stream_nom" id="stream_nom" name="stream_nom" class="form-control" placeholder="Enter le nom de flux"
+                value=""/>
+            </div>
+            <button type="submit" id="submitButton" class="btn btn-primary btn-block">
+                  Save
+            </button>
+        </form>
+        <br/><br/>
+        <a href="/stream/lister_stream">
+          <button type="submit" class="btn btn-dark" width="20px">Lister les flux</button>  
+        </a>
+      </div>
+    </div>
+  </div>
+ 
+  <%- include('includes/_footer') %>

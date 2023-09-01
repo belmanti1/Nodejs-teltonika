@@ -34,15 +34,29 @@
               value="<%= device.device_nom %>" />
           </div>
           <div class="form-group">
-            <label for="createdBy">createdBy</label>
-            <input type="text" name="createdBy" class="form-control" placeholder="Enter createdBy"
-              value="<%= device.createdBy %>" />
-          </div>
-          <div class="form-group">
-            <label for="status">Status</label>
-            <input type="text"  name="status" class="form-control" placeholder="Entrer le Status"
-              value="<%= device.status %>" />
-          </div>
+            <label for="group">groupe</label>
+            <select class="form-control" id="group-dropdown" name="group_nom">
+            <option value="">Select group</option>
+            <% if(groups.length){
+              for(var i = 0; i< groups.length; i++) {%> 
+                  <option  value="<%= device.ident_canal_id%>">
+                        <%= groups[i].group_nom %>
+                  </option>
+            <% } }%>
+            </select>
+            </div>
+            <div class="form-group">
+              <label for="canal">Canal</label>
+              <select class="form-control" id="canal-dropdown" name="canal_nom">
+              <option value="">Select canal</option>
+              <% if(canals.length){
+                for(var i = 0; i< canals.length; i++) {%> 
+                    <option  value="<%= device.ident_group._id%>">
+                          <%= canals[i].canal_nom %>
+                    </option>
+              <% } }%>
+              </select>
+              </div>
           <div>
             <button type="submit" class="btn btn-primary btn-block">
               Save
