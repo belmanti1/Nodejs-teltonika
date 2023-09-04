@@ -39,7 +39,7 @@ exports.lister_device=(req,res)=>{
      })
 }
 exports.update_device=(req,res)=>{
-    axios.get('http://localhost:3006/device/api/devices',{ params : {id:req.query.id }})
+    axios.get('https://gep-iot-jsmw.onrender.com/device/api/devices',{ params : {id:req.query.id }})
         .then(async function(devicedata){
             const groups = await Group.find().exec();
             const canals =await Canal.find().exec();
@@ -64,7 +64,7 @@ exports.Adminhome=async (req,res)=>{
 }
 exports.Adminlister_device=(req,res)=>{
     //make a get request to /api/devices
-    axios.get('http://localhost:3006/device/api/devices')
+    axios.get('https://gep-iot-jsmw.onrender.com/device/api/devices')
         .then(async function(response){
             console.log(response)
             res.render('admin/lister_device',{devices:response.data,name: "administrateur"})
@@ -74,7 +74,7 @@ exports.Adminlister_device=(req,res)=>{
         })
 }
 exports.Adminupdate_device=(req,res)=>{
-    axios.get('http://localhost:3006/device/api/devices',{ params : {id:req.query.id }})
+    axios.get('https://gep-iot-jsmw.onrender.com/device/api/devices',{ params : {id:req.query.id }})
         .then(function(devicedata){
             res.render('admin/update_device',{device:devicedata.data,name: "administrateur"})
         })
