@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 exports.log=(req,res)=>{
-    axios.get('http://localhost:3006/stream/api/streams')
+    axios.get('https://gep-iot-jsmw.onrender.com/stream/api/streams')
           .then(function(response){
                console.log(response)
                res.render("log",{streams:response.data,name: req.user.name})
@@ -11,7 +11,7 @@ exports.log=(req,res)=>{
           })
 }
 exports.add_stream=(req,res)=>{
-   axios.get('http://localhost:3006/device/api/devices',{ params : {id:req.query.id }})
+   axios.get('https://gep-iot-jsmw.onrender.com/device/api/devices',{ params : {id:req.query.id }})
        .then(async function(devicedata){
           
            res.render("add_stream",{device:devicedata.data,name: req.user.name})
@@ -22,7 +22,7 @@ exports.add_stream=(req,res)=>{
    //make a get request to /api/groupes
 } 
 exports.Adminlog=(req,res)=>{
-   axios.get('http://localhost:3006/stream/api/streams')
+   axios.get('https://gep-iot-jsmw.onrender.com/stream/api/streams')
          .then(function(response){
               console.log(response)
               res.render("admin/log",{streams:response.data,name: "administrateur"})
