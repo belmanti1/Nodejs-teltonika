@@ -29,7 +29,7 @@ exports.home=async (req,res)=>{
 // };
 exports.lister_device=(req,res)=>{
     //make a get request to /api/devices
-    axios.get('http://localhost:3006/device/api/devices')
+    axios.get('https://gep-iot-jsmw.onrender.com/device/api/devices')
         .then(async function(response){
             console.log(response)
             res.render('lister_device',{devices:response.data,name: req.user.name})
