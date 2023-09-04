@@ -22,7 +22,7 @@ exports.add_group=async (req,res)=>{
       }
 }
 exports.update_group=(req,res)=>{
-    axios.get('http://localhost:3006/group/api/groupes',{ params : {id:req.query.id }})
+    axios.get('https://gep-iot-jsmw.onrender.com/group/api/groupes',{ params : {id:req.query.id }})
         .then(function(groupdata){
             res.render("update_group",{group:groupdata.data,name: req.user.name})
         })
@@ -32,7 +32,7 @@ exports.update_group=(req,res)=>{
 }
 exports.Adminlister_group=(req,res)=>{
     //make a get request to /api/groupes
-    axios.get('http://localhost:3006/group/api/groupes')
+    axios.get('https://gep-iot-jsmw.onrender.com/group/api/groupes')
         .then(function(response){
             console.log(response)
             res.render('admin/lister_group',{groupes:response.data,name: "administrateur"})
@@ -51,7 +51,7 @@ exports.Adminadd_group=async (req,res)=>{
       }
 }
 exports.Adminupdate_group=(req,res)=>{
-    axios.get('http://localhost:3006/group/api/groupes',{ params : {id:req.query.id }})
+    axios.get('https://gep-iot-jsmw.onrender.com/group/api/groupes',{ params : {id:req.query.id }})
         .then(function(groupdata){
             res.render("admin/update_group",{group:groupdata.data,name: "administrateur"})
         })
